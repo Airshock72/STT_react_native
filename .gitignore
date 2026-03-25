@@ -1,0 +1,10 @@
+node_modules
+.expo
+.expo-shared
+.idea
+dist
+web-build
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+coverage
