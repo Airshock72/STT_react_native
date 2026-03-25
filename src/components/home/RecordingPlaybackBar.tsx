@@ -27,6 +27,7 @@ export function RecordingPlaybackBar({
             accessibilityRole="button"
             activeOpacity={0.85}
             className="mr-3 h-10 w-10 items-center justify-center rounded-full"
+            hitSlop={8}
             onPress={onTogglePlayback}
             style={{ backgroundColor: colors.primary }}
           >

@@ -164,10 +164,6 @@ export function useSpeechRecorder() {
   }, []);
 
   useEffect(() => {
-    void setAudioModeAsync(BASE_AUDIO_MODE);
-  }, []);
-
-  useEffect(() => {
     if (!audioUri) {
       player.pause();
       return;
@@ -255,7 +251,6 @@ export function useSpeechRecorder() {
     }
 
     setVolumeLevel(0);
-    void setAudioModeAsync(BASE_AUDIO_MODE);
 
     const hasSessionOutput =
       Boolean(audioUriRef.current) || Boolean(committedTranscriptRef.current);

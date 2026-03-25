@@ -33,6 +33,7 @@ function NavItem({ icon, label, onPress = noop, selected = false }: NavItemProps
       accessibilityRole="button"
       activeOpacity={0.8}
       className="items-center"
+      hitSlop={10}
       onPress={onPress}
     >
       {icon}
@@ -83,6 +84,7 @@ export function BottomNavigation({
           activeOpacity={0.88}
           className="items-center"
           disabled={isBusy}
+          hitSlop={10}
           onPress={onPrimaryPress}
           style={{ opacity: isBusy ? 0.72 : 1 }}
         >

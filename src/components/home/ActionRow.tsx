@@ -6,14 +6,26 @@ import { colors } from "@/theme/colors";
 
 const noop = () => {};
 
-type ActionChipProps = {
-  icon: ComponentProps<typeof Ionicons>["name"] | ComponentProps<typeof Feather>["name"];
-  label: string;
-  variant: "filled" | "outlined";
-  iconSet: "ionicons" | "feather";
+type ActionRowProps = {
+  onNewPress?: () => void;
+  onSettingsPress?: () => void;
 };
 
-function ActionChip({ icon, iconSet, label, variant }: ActionChipProps) {
+type ActionChipProps = {
+  icon: ComponentProps<typeof Ionicons>["name"] | ComponentProps<typeof Feather>["name"];
+  iconSet: "ionicons" | "feather";
+  label: string;
+  onPress?: () => void;
+  variant: "filled" | "outlined";
+};
+
+function ActionChip({
+  icon,
+  iconSet,
+  label,
+  onPress = noop,
+  variant,
+}: ActionChipProps) {
   const isFilled = variant === "filled";
 
   return (
@@ -23,10 +35,11 @@ function ActionChip({ icon, iconSet, label, variant }: ActionChipProps) {
       className={`h-10 flex-row items-center rounded-[8px] px-3 ${
         isFilled ? "bg-primary" : "border border-primary bg-canvas"
       }`}
-      onPress={noop}
+      hitSlop={8}
+      onPress={onPress}
       style={{
-        borderColor: isFilled ? colors.primary : colors.primaryDark,
         backgroundColor: isFilled ? colors.primary : colors.canvas,
+        borderColor: isFilled ? colors.primary : colors.primaryDark,
       }}
     >
       {iconSet === "ionicons" ? (
@@ -55,20 +68,25 @@ function ActionChip({ icon, iconSet, label, variant }: ActionChipProps) {
   );
 }
 
-export function ActionRow() {
+export function ActionRow({
+  onNewPress = noop,
+  onSettingsPress = noop,
+}: ActionRowProps) {
   return (
     <View className="flex-row items-center justify-between px-6 pb-3 pt-2">
       <ActionChip
-        icon="add"
-        iconSet="ionicons"
-        label='ახლის გახსნა'
-        variant="filled"
+          icon="add"
+          iconSet="ionicons"
+          label='ახლის გახსნა'
+          onPress={onNewPress}
+          variant="filled"
       />
       <ActionChip
-        icon="settings"
-        iconSet="feather"
-        label='პარამეტრები'
-        variant="outlined"
+          icon="settings"
+          iconSet="feather"
+          label='პარამეტრები'
+          onPress={onSettingsPress}
+          variant="outlined"
       />
     </View>
   );

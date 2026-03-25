@@ -17,6 +17,7 @@ export function Header() {
             accessibilityRole="button"
             activeOpacity={0.8}
             className="mr-2 h-10 w-10 items-center justify-center"
+            hitSlop={10}
             onPress={() => setMenuOpen(false)}
           >
             <Ionicons name="chevron-back" size={28} color={colors.textMain} />
@@ -47,6 +48,7 @@ export function Header() {
               accessibilityRole="button"
               activeOpacity={0.85}
               className="mt-1 flex-row items-center self-start rounded-full px-3 py-1"
+              hitSlop={8}
               onPress={noop}
               style={{ backgroundColor: "#7AD6B2" }}
             >
@@ -69,6 +71,7 @@ export function Header() {
             accessibilityRole="button"
             activeOpacity={0.85}
             className="ml-1 flex-row items-center"
+            hitSlop={8}
             onPress={noop}
           >
             {/*todo Georgian Flag here*/}
@@ -106,6 +109,7 @@ export function Header() {
             accessibilityRole="button"
             activeOpacity={0.8}
             className="h-10 w-10 items-center justify-center"
+            hitSlop={10}
             onPress={() => setMenuOpen(true)}
           >
             <Ionicons name="menu" size={32} color={colors.textMain} />
