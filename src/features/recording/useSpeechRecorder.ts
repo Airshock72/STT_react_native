@@ -58,6 +58,8 @@ const STOP_RECORDING_ERROR_MESSAGE =
   "ჩაწერის შეჩერება ვერ მოხერხდა.";
 const PLAYBACK_UNAVAILABLE_MESSAGE =
   "ამ მოწყობილობაზე ჩაწერილი აუდიოს მოსმენა მიუწვდომელი არ არის.";
+const STT_UNAVAILABLE_MESSAGE =
+  "მეტყველების ამოცნობა მიუწვდომელია. გამოიყენეთ development build (არა Expo Go).";
 
 function normalizeTranscript(value: string) {
   return value.replace(/\s+/g, " ").trim();
@@ -278,7 +280,7 @@ export function useSpeechRecorder() {
 
         player.pause();
         clearSession();
-        setErrorMessage(null);
+        setErrorMessage(STT_UNAVAILABLE_MESSAGE);
         setPlaybackNotice(null);
         setPhaseState("starting");
 

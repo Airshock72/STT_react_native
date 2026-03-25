@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Keyboard,
   Modal,
@@ -212,6 +212,14 @@ export function SettingsSheet({
   const [languageQuery, setLanguageQuery] = useState("");
   const [openField, setOpenField] = useState<SettingsFieldKey | null>(null);
 
+  useEffect(() => {
+    if (visible) {
+      setDraft(value);
+      setLanguageQuery("");
+      setOpenField(null);
+    }
+  }, [visible, value]);
+
   const filteredLanguages = useMemo(() => {
     const normalizedQuery = languageQuery.trim().toLowerCase();
 
@@ -224,22 +232,18 @@ export function SettingsSheet({
     );
   }, [languageQuery]);
 
-  const resetLocalState = useCallback(() => {
-    setLanguageQuery("");
-    setOpenField(null);
-  }, []);
-
   const handleDismiss = useCallback(
     (mode: "cancel" | "save") => {
       Keyboard.dismiss();
-      resetLocalState();
+      setLanguageQuery("");
+      setOpenField(null);
       if (mode === "save") {
         onSave(draft);
       } else {
         onCancel();
       }
     },
-    [draft, onCancel, onSave, resetLocalState],
+    [draft, onCancel, onSave],
   );
 
   const toggleField = useCallback((field: SettingsFieldKey) => {
@@ -249,31 +253,31 @@ export function SettingsSheet({
     }
   }, []);
 
+  if (!visible) {
+    return null;
+  }
+
   return (
     <Modal
       animationType="slide"
       onRequestClose={() => handleDismiss("cancel")}
-      onShow={() => {
-        setDraft(value);
-        resetLocalState();
-      }}
       transparent
-      visible={visible}
+      visible
     >
       <View style={styles.modalOverlay}>
         <Pressable
           onPress={() => handleDismiss("cancel")}
-          style={StyleSheet.absoluteFillObject}
+          style={styles.backdrop}
         />
 
         <View
           style={[
             styles.sheetContainer,
-            {
-              paddingBottom: Math.max(insets.bottom, 18),
-            },
+            { paddingBottom: Math.max(insets.bottom, 18) },
           ]}
         >
+          <View style={styles.handle} />
+
           <ScrollView
             keyboardShouldPersistTaps="always"
             showsVerticalScrollIndicator={false}
@@ -405,8 +409,19 @@ export function SettingsSheet({
 }
 
 const styles = StyleSheet.create({
-  modalOverlay: {
+  backdrop: {
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: colors.sheetBackdrop,
+  },
+  handle: {
+    alignSelf: "center",
+    backgroundColor: "#D1D5DB",
+    borderRadius: 3,
+    height: 5,
+    marginBottom: 14,
+    width: 40,
+  },
+  modalOverlay: {
     flex: 1,
     justifyContent: "flex-end",
   },
@@ -416,7 +431,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 32,
     elevation: 20,
     paddingHorizontal: 16,
-    paddingTop: 18,
+    paddingTop: 12,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: -10 },
     shadowOpacity: 0.08,

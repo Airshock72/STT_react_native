@@ -5,7 +5,7 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
-import { Platform, Text, TouchableOpacity, View } from "react-native";
+import { Linking, Platform, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { colors } from "@/theme/colors";
@@ -122,7 +122,7 @@ export function BottomNavigation({
             />
           }
           label='Youtube Link'
-          onPress={onYoutubePress}
+          onPress={() => Linking.openURL("https://www.youtube.com/watch?v=A_0DMgvW7bg")}
         />
       </View>
     </View>
