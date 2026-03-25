@@ -27,7 +27,19 @@
       "**/*"
     ],
     "plugins": [
-      "expo-font"
+      "expo-font",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "$(PRODUCT_NAME)-ს სჭირდება მიკროფონზე წვდომა ხმის ჩასაწერად.",
+          "speechRecognitionPermission": "$(PRODUCT_NAME)-ს სჭირდება წვდომა მეტყველების ამოსაცნობად და ტექსტად გადასაყვანად.",
+          "androidSpeechServicePackages": [
+            "com.google.android.as",
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.tts"
+          ]
+        }
+      ]
     ]
   }
 }

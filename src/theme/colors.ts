@@ -4,9 +4,12 @@ export const colors = {
   primary: "#5A9BF7",
   primaryDark: "#3B82F6",
   primarySoft: "#EAF3FF",
+  recordingStop: "#F16963",
+  surfaceSoft: "#F4F7FB",
   textMain: "#222222",
   textMuted: "#8F8F8F",
   iconSoft: "#7A7A7A",
   youtube: "#FF2D20",
+  playerTrack: "#D8DDE5",
+  error: "#D84A40",
 } as const;
-

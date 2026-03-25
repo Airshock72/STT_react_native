@@ -6,45 +6,6 @@ import { colors } from "@/theme/colors";
 
 const noop = () => {};
 
-function GeorgiaFlag() {
-  return (
-    <View
-      className="h-7 w-10 items-center justify-center rounded-[10px] bg-white"
-      style={{ borderColor: "#E5E7EB", borderWidth: 1 }}
-    >
-      <View className="h-full w-full items-center justify-center">
-        <View className="absolute h-[18px] w-[4px] rounded-full bg-[#E53935]" />
-        <View className="absolute h-[4px] w-[18px] rounded-full bg-[#E53935]" />
-
-        <View
-          className="absolute left-[6px] top-[5px] h-[6px] w-[6px] items-center justify-center"
-        >
-          <View className="absolute h-[6px] w-[2px] rounded-full bg-[#E53935]" />
-          <View className="absolute h-[2px] w-[6px] rounded-full bg-[#E53935]" />
-        </View>
-        <View
-          className="absolute right-[6px] top-[5px] h-[6px] w-[6px] items-center justify-center"
-        >
-          <View className="absolute h-[6px] w-[2px] rounded-full bg-[#E53935]" />
-          <View className="absolute h-[2px] w-[6px] rounded-full bg-[#E53935]" />
-        </View>
-        <View
-          className="absolute bottom-[5px] left-[6px] h-[6px] w-[6px] items-center justify-center"
-        >
-          <View className="absolute h-[6px] w-[2px] rounded-full bg-[#E53935]" />
-          <View className="absolute h-[2px] w-[6px] rounded-full bg-[#E53935]" />
-        </View>
-        <View
-          className="absolute bottom-[5px] right-[6px] h-[6px] w-[6px] items-center justify-center"
-        >
-          <View className="absolute h-[6px] w-[2px] rounded-full bg-[#E53935]" />
-          <View className="absolute h-[2px] w-[6px] rounded-full bg-[#E53935]" />
-        </View>
-      </View>
-    </View>
-  );
-}
-
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -93,7 +54,7 @@ export function Header() {
                 className="text-[12px] font-semibold"
                 style={{ color: colors.textMain }}
               >
-                {"\u10de\u10e0\u10d4\u10db\u10d8\u10e3\u10db\u10d8"}
+                პრემიუმი
               </Text>
               <Ionicons
                 name="sparkles"
@@ -110,7 +71,7 @@ export function Header() {
             className="ml-1 flex-row items-center"
             onPress={noop}
           >
-            <GeorgiaFlag />
+            {/*todo Georgian Flag here*/}
             <MaterialIcons
               name="keyboard-arrow-down"
               size={24}
@@ -126,7 +87,7 @@ export function Header() {
               className="text-[17px] font-bold tracking-[0.2px] text-textMain"
               style={{ color: colors.textMain }}
             >
-              {"\u10ee\u10db\u10d0"}
+              ხმა
             </Text>
             <MaterialIcons
               name="swap-horiz"
@@ -137,7 +98,7 @@ export function Header() {
               className="text-[17px] font-bold tracking-[0.2px] text-textMain"
               style={{ color: colors.textMain }}
             >
-              {"\u10e2\u10d4\u10e5\u10e1\u10e2\u10d8"}
+              ტექსტი
             </Text>
           </View>
 

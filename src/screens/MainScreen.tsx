@@ -4,10 +4,27 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ActionRow } from "@/components/home/ActionRow";
 import { BottomNavigation } from "@/components/home/BottomNavigation";
 import { Header } from "@/components/home/Header";
-import { TranscriptPlaceholder } from "@/components/home/TranscriptPlaceholder";
+import { RecordingPlaybackBar } from "@/components/home/RecordingPlaybackBar";
+import { TranscriptPanel } from "@/components/home/TranscriptPanel";
+import { useSpeechRecorder } from "@/features/recording/useSpeechRecorder";
 import { colors } from "@/theme/colors";
 
 export function MainScreen() {
+  const {
+    elapsedLabel,
+    errorMessage,
+    hasPlayback,
+    helperMessage,
+    isBusy,
+    isPlaying,
+    isRecording,
+    playbackProgress,
+    startRecording,
+    stopRecording,
+    togglePlayback,
+    transcript,
+  } = useSpeechRecorder();
+
   return (
     <SafeAreaView
       edges={["top", "left", "right"]}
@@ -17,9 +34,25 @@ export function MainScreen() {
       <View className="flex-1 bg-canvas">
         <Header />
         <ActionRow />
-        <TranscriptPlaceholder />
-        <View className="flex-1" />
-        <BottomNavigation />
+        <TranscriptPanel
+          errorMessage={errorMessage}
+          helperMessage={helperMessage}
+          isRecording={isRecording}
+          transcript={transcript}
+        />
+        {hasPlayback ? (
+          <RecordingPlaybackBar
+            elapsedLabel={elapsedLabel}
+            isPlaying={isPlaying}
+            onTogglePlayback={togglePlayback}
+            progress={playbackProgress}
+          />
+        ) : null}
+        <BottomNavigation
+          isBusy={isBusy}
+          isRecording={isRecording}
+          onPrimaryPress={isRecording ? stopRecording : startRecording}
+        />
       </View>
     </SafeAreaView>
   );
