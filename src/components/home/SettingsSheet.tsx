@@ -85,16 +85,16 @@ export const defaultSpeechSettings: SpeechSettings = {
   speaker: SPEAKER_OPTION,
 };
 
-function DropdownField({
-  onSearchChange = noop,
-  onSelect,
-  onToggle,
-  open,
-  options,
-  searchable = false,
-  searchValue = "",
-  title,
-}: DropdownFieldProps) {
+const DropdownField = ({
+onSearchChange = noop,
+onSelect,
+onToggle,
+open,
+options,
+searchable = false,
+searchValue = "",
+title,
+}: DropdownFieldProps) =>  {
   return (
     <View style={{ zIndex: open ? 30 : 1 }}>
       <TouchableOpacity
@@ -176,7 +176,7 @@ function DropdownField({
   );
 }
 
-function CheckboxRowItem({ checked, label, onPress }: CheckboxRowItemProps) {
+const CheckboxRowItem = ({ checked, label, onPress }: CheckboxRowItemProps) => {
   return (
     <TouchableOpacity
       accessibilityRole="checkbox"
@@ -200,12 +200,12 @@ function CheckboxRowItem({ checked, label, onPress }: CheckboxRowItemProps) {
   );
 }
 
-export function SettingsSheet({
-  onCancel = noop,
-  onSave = noop,
-  value,
-  visible,
-}: SettingsSheetProps) {
+export const SettingsSheet = ({
+onCancel = noop,
+onSave = noop,
+value,
+visible,
+}: SettingsSheetProps) =>  {
   const insets = useSafeAreaInsets();
 
   const [draft, setDraft] = useState(value);
@@ -259,7 +259,7 @@ export function SettingsSheet({
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       onRequestClose={() => handleDismiss("cancel")}
       transparent
       visible
@@ -410,8 +410,8 @@ export function SettingsSheet({
 
 const styles = StyleSheet.create({
   backdrop: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: colors.sheetBackdrop,
+    flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   handle: {
     alignSelf: "center",

@@ -22,9 +22,9 @@ type LanguageOption = {
 };
 
 const LANGUAGES: LanguageOption[] = [
-  { code: "ka", flag: "\u{1F1EC}\u{1F1EA}", label: "ქართული" },
-  { code: "en", flag: "\u{1F1EC}\u{1F1E7}", label: "English" },
-  { code: "ru", flag: "\u{1F1F7}\u{1F1FA}", label: "Русский" },
+  { code: "ka", flag: "🇬🇪", label: "ქართული" },
+  { code: "en", flag: "🇬🇧", label: "English" },
+  { code: "ru", flag: "🇷🇺", label: "Русский" },
 ];
 
 type HistoryHeaderProps = {
@@ -65,13 +65,36 @@ export function HistoryHeader({
           <Ionicons name="chevron-back" size={28} color={colors.textMain} />
         </TouchableOpacity>
 
-        <Text
-          className="flex-1 text-[15px] font-semibold"
-          numberOfLines={1}
-          style={{ color: colors.textMain }}
+        <View
+          className="mr-2 h-9 w-9 items-center justify-center rounded-full"
+          style={{ backgroundColor: "#E8E0A0" }}
         >
-          {userEmail}
-        </Text>
+          <Text className="text-[16px] font-bold" style={{ color: "#6B6320" }}>
+            {userEmail.charAt(0).toUpperCase()}
+          </Text>
+        </View>
+
+        <View className="flex-1">
+          <Text
+            className="text-[15px] font-semibold"
+            numberOfLines={1}
+            style={{ color: colors.textMain }}
+          >
+            {userEmail}
+          </Text>
+          <View
+            className="mt-1 flex-row items-center self-start rounded-full px-2 py-0.5"
+            style={{ backgroundColor: "#E6F9E6", borderColor: "#A8D8A8", borderWidth: 1 }}
+          >
+            <Text className="text-[11px]">⭐</Text>
+            <Text
+              className="ml-1 text-[11px] font-semibold"
+              style={{ color: "#2D7A2D" }}
+            >
+              პრემიუმი
+            </Text>
+          </View>
+        </View>
 
         <TouchableOpacity
           accessibilityRole="button"
