@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(find /c/Users/Gela/projects/STT_react_native -not -path */node_modules/* -not -path */.git/* -type f)",
-      "Bash(npx tsc:*)",
-      "Bash(npx expo:*)"
-    ]
-  }
-}
